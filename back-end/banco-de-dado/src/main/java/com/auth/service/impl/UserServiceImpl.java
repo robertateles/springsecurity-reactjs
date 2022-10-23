@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.auth.entity.User;
+import com.auth.exception.ErroAutenticacao;
 import com.auth.exception.RegraNegocio;
 import com.auth.repositories.UserRepository;
 import com.auth.service.UserService;
@@ -18,7 +19,7 @@ import com.exception.ResourceNotFoundException;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 	
 	@Override
 	public BCryptPasswordEncoder passwordEncode() {
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
 		User existsUser = userRepository.findByUsername(user.getUsername());
 
 	    if (existsUser != null) {
-	      throw new RegraNegocio("User already exists!");
+	      throw new ErroAutenticacao("User already exists!");
 	    }
 	    
 	    user.setPassword(passwordEncode().encode(user.getPassword()));
@@ -40,6 +41,7 @@ public class UserServiceImpl implements UserService {
 	    return createdUser;
 		
 	}
+	
 
 	@Override
 	public List<User> getAllUsers() {
@@ -65,6 +67,7 @@ public class UserServiceImpl implements UserService {
 		userExists.setName(user.getName());
 		userExists.setUsername(user.getUsername());
 		userExists.setPassword(user.getPassword());
+		userExists.setRoles(user.getRoles());
 		
 		userRepository.save(userExists);
 		return userExists;

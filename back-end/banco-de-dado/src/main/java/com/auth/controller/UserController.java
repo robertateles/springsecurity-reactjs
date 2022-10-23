@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.auth.dto.UserRoleDTO;
 import com.auth.entity.User;
+import com.auth.service.RoleService;
 import com.auth.service.UserService;
 
 @CrossOrigin("*")
@@ -26,9 +28,17 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	RoleService roleService;
+	
 	@PostMapping("/create")
 	public User save(@RequestBody User user) {
 		return userService.save(user);
+	}
+	
+	@PostMapping("/acess")
+	public User role(@RequestBody UserRoleDTO userRoleDTO) {
+		return roleService.execute(userRoleDTO);
 	}
 	
 	@GetMapping

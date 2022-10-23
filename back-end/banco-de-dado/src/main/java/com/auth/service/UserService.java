@@ -12,7 +12,7 @@ public interface UserService {
 	BCryptPasswordEncoder passwordEncode();
 	
     User save(User user);
-    
+        
     List<User> getAllUsers();
 	
 	User getUserById(long id);

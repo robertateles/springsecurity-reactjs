@@ -17,17 +17,17 @@ import org.springframework.stereotype.Component;
 @EnableMethodSecurity
 @Component
 public class SecurityConfig{
-//	
-//	@Autowired
-//	CustomUserDetailsService userDetailsService;
-//	
-//	private BCryptPasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
-//	
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//	}
+	
+	@Autowired
+	CustomUserDetailsService userDetailsService;
+	
+	private BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{

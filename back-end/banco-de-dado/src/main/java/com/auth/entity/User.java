@@ -1,9 +1,9 @@
 package com.auth.entity;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
