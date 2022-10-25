@@ -54,7 +54,7 @@ public class UserController {
 	
 	@PutMapping("{id}")
 	public ResponseEntity atualizar(@PathVariable Long id, @RequestBody User u) {
-		return new ResponseEntity<User>(userService.atualizar(u, 1),HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<User>(userService.atualizar(u, id),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("{id}")
